@@ -12,88 +12,99 @@
 
     <ui:define name="content">
         <h:form>
-                <p:panelGrid>
-                    
-                    <p:inputNumber value="#{prueba.valor}"> 
-                        <p:ajax update="p1"/>
-                        <p:ajax update="salida_uno"/>
-                    </p:inputNumber>
-                    
-                    <br></br>
-                    
-                    <p:inputSwitch></p:inputSwitch>
-                    
-                    <br></br>
+            <h:panelGrid>
 
-                    <p:outputLabel id ="p1" value="#{prueba.valor}"></p:outputLabel>
-                    <br/>
+                <p:inputNumber value="#{prueba.valor}"> 
+                    <p:ajax update="p1"/>
+                    <p:ajax update="salida_uno"/>
+                </p:inputNumber>                
+                <br/>
 
-                    <p:inputText disabled="true" id="salida_uno" value="#{prueba.valor}"/>
-                    <br/>
-                    <h3>KeyFilter</h3>
-                    <p:inputText> 
-                        <p:keyFilter regEx="/[\d]/"> </p:keyFilter>
-                        <!--<p:keyFilter regEx="/[\d\-]//"> </p:keyFilter>-->
-                        <!--<p:keyFilter regEx="/[\d\.]/"> </p:keyFilter>-->
-                        <!--<p:keyFilter regEx="/[\d\.\s,]"> </p:keyFilter>-->
-                        <!--<p:keyFilter regEx="/[\d\-\.]/"> </p:keyFilter>-->
-                        <!--<p:keyFilter regEx="/[0-9a-f]/i"> </p:keyFilter>-->
-                        <!--<p:keyFilter regEx="/[a-z0-9_\.\-@]/i"> </p:keyFilter>-->
-                        <!--<p:keyFilter regEx="/[a-z_]/i"> </p:keyFilter>-->
-                        <!--<p:keyFilter regEx="/[a-z0-9_]/i"> </p:keyFilter>-->
-                    </p:inputText>
-                    <br/>
-                    
-                    <h3>Password</h3>
-                    <label>Contraseña Basica</label>
-                    <p:password/>
-                    <br/>
-                    
-                    <label>Contraseña Segura Debil</label>
-                    <p:password  feedback="true" />
-                    <br/>
-                    
-                    <label>Contraseña Segura Fuerte</label>
-                    <p:password  feedback="true" promptLabel="Escribe una Contraseña" weakLabel="Debil"
-                    goodLabel="Buena" strongLabel="Fuerte"/>                    
-                    <br/>
-                    
-                    <label>Contraseña con Comentario en Linea</label>
-                    <p:password  feedback="true" inline="true"/>
-                    <br/>
-                    
-                    <h3>KeyBoard</h3>
-                    <label>Teclado Diseño Predeterminado</label>
-                    <p:keyboard/>
-                    <br/>
+                <p:inputSwitch></p:inputSwitch>
+                <br/>
 
-                    <label>Teclado Basico</label>
-                    <p:keyboard layout="qwertyBasic" />
-                    <br/>
-                    
-                    <label>Teclado Alfabetico</label>
-                    <p:keyboard layout="alphabetic" />
-                    <br/>
-                    
-                    <label>Teclado Personalizado 1</label>
-                    <p:keyboard layoutTemplate="prime-back,faces-clear,rocks-close" />
-                    <br/>
-                    
-                    <label>Teclado Personalizado 2</label>
-                    <p:keyboard layout="custom" layoutTemplate="create-space-your-close,owntemplate-shift,easily-space-spacebar" />
-                    <br/>
-                    
-                    <label>Teclado Numerico</label>
-                    <p:keyboard keypadOnly="true" />
-                    <br/>
-                    
-                    <label>Teclado Boton</label>
-                    <p:keyboard showMode="button"  keypadOnly="true" />
-                    <br/>
-                                        
-                    <label>Tecaldo Contraseña</label>
-                    <p:keyboard password="true" keypadOnly="true" />
-                </p:panelGrid> 
+            </h:panelGrid> 
+
+            <h:panelGrid>    
+
+                <p:outputLabel id ="p1" value="#{prueba.valor}"></p:outputLabel>
+                <br/>
+
+                <p:inputText disabled="true" id="salida_uno" value="#{prueba.valor}"/>
+                <br/>
+
+                <h3>KeyFilter</h3>
+                <p:inputText> 
+                    <p:keyFilter regEx="/[\d]/"> </p:keyFilter>
+                    <!--<p:keyFilter regEx="/[\d\-]//"> </p:keyFilter>-->
+                    <!--<p:keyFilter regEx="/[\d\.]/"> </p:keyFilter>-->
+                    <!--<p:keyFilter regEx="/[\d\.\s,]"> </p:keyFilter>-->
+                    <!--<p:keyFilter regEx="/[\d\-\.]/"> </p:keyFilter>-->
+                    <!--<p:keyFilter regEx="/[0-9a-f]/i"> </p:keyFilter>-->
+                    <!--<p:keyFilter regEx="/[a-z0-9_\.\-@]/i"> </p:keyFilter>-->
+                    <!--<p:keyFilter regEx="/[a-z_]/i"> </p:keyFilter>-->
+                    <!--<p:keyFilter regEx="/[a-z0-9_]/i"> </p:keyFilter>-->
+                </p:inputText>
+                <br/>
+            </h:panelGrid>
+
+            <h:panelGrid>
+                <h3>Password</h3>
+                <label>Contraseña Basica</label>
+                <p:password/>
+                <br/>
+
+                <label>Contraseña Segura Debil</label>
+                <p:password  feedback="true" />
+                <br/>
+            </h:panelGrid>
+
+            <h:panelGrid>
+
+                <label>Contraseña Segura Fuerte</label>
+                <p:password  feedback="true" promptLabel="Escribe una Contraseña" weakLabel="Debil"
+                goodLabel="Buena" strongLabel="Fuerte"/>                    
+                <br/>
+
+                <label>Contraseña con Comentario en Linea</label>
+                <p:password  feedback="true" inline="true"/>
+                <br/>
+
+                <h3>KeyBoard</h3>
+                <label>Teclado Diseño Predeterminado</label>
+                <p:keyboard/>
+                <br/>
+
+                <label>Teclado Basico</label>
+                <p:keyboard layout="qwertyBasic" />
+                <br/>
+
+                <label>Teclado Alfabetico</label>
+                <p:keyboard layout="alphabetic" />
+                <br/>
+
+                <label>Teclado Personalizado 1</label>
+                <p:keyboard layoutTemplate="prime-back,faces-clear,rocks-close" />
+                <br/>
+
+                <label>Teclado Personalizado 2</label>
+                <p:keyboard layout="custom" layoutTemplate="create-space-your-close,owntemplate-shift,easily-space-spacebar" />
+                <br/>
+
+                <label>Teclado Numerico</label>
+                <p:keyboard keypadOnly="true" />
+                <br/>
+
+                <label>Teclado Boton</label>
+                <p:keyboard showMode="button"  keypadOnly="true" />
+                <br/>
+
+                <label>Tecaldo Contraseña</label>
+                <p:keyboard password="true" keypadOnly="true" />
+            </h:panelGrid> 
+            
+
+                `
             </h:form>
     </ui:define>
 
