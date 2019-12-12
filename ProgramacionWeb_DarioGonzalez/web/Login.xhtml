@@ -23,10 +23,10 @@
                         <br/>
 
                         <label>Password: </label>
-                        <p:password id="password" value="#{login.password}"></p:password>
+                        <p:password id="password" value="#{login.pasword}"></p:password>
                         <br/>
 
-                        <p:commandButton value="Login" update="mensaje" actionListener="#{login.loginUser}" ajax="true"></p:commandButton>
+                        <p:commandButton value="Login" update="mensaje" actionListener="#{login.loginUser}"></p:commandButton>
                         
                     </h:panelGrid>    
                 </h:form>

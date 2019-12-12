@@ -5,6 +5,7 @@
  */
 package Beans;
 
+import Modelo.Usuarios;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -18,11 +19,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Dax
- */
 @WebFilter("*.html")
 public class urlFilter implements Filter {
 
@@ -101,19 +99,20 @@ public class urlFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-
+            
         HttpServletRequest servet_resquest = (HttpServletRequest) request;
         HttpServletResponse servel_response = (HttpServletResponse) response;
 
         boolean sesion_iniciada = false;
         boolean redirecionar = true;
-        String paginas[] = {"/sga/Pagina3.xhtml", "/sga/welcomePrimefaces.xhtml"};
-
-        if (sesion_iniciada) {
-
-            chain.doFilter(request, response);
-
-        } else {
+        String paginas[] = {"/sga/Login.xhtml"};
+        
+        HttpSession sesion = servet_resquest.getSession(true);
+        Usuarios user = (Usuarios) sesion.getAttribute("user");
+        
+        if (user!=null) {
+           redirecionar = false;
+        }else {
 
             for (String pagina : paginas) {
 
@@ -122,15 +121,28 @@ public class urlFilter implements Filter {
                 }
             }
         }
+//        if (sesion_iniciada) {
+
+//        } else {
+//
+//            for (String pagina : paginas) {
+//
+//                if (servet_resquest.getRequestURI().contains(pagina)) {
+//                    redirecionar = false;
+//                }
+//            }
+//        }
         if (redirecionar) {
 
-            servel_response.sendRedirect(servet_resquest.getContextPath() + "/sga/Pagina3.xhtml");
+            servel_response.sendRedirect(servet_resquest.getContextPath() + "/sga/Login.xhtml");
 
         } else {
 
             chain.doFilter(request, response);
         }
+    
     }
+    
 
     /**
      * Return the filter configuration object for this filter.
