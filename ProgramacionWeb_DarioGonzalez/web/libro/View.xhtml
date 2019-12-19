@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LibroViewDlg" widgetVar="LibroViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewLibroTitle}">
+            <h:form id="LibroViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{libroController.selected != null}">
+                        <h:outputText value="#{bundle.ViewLibroLabel_codigo}"/>
+                        <h:outputText value="#{libroController.selected.codigo}" title="#{bundle.ViewLibroTitle_codigo}"/>
+                        <h:outputText value="#{bundle.ViewLibroLabel_nombre}"/>
+                        <h:outputText value="#{libroController.selected.nombre}" title="#{bundle.ViewLibroTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewLibroLabel_descripcion}"/>
+                        <h:outputText value="#{libroController.selected.descripcion}" title="#{bundle.ViewLibroTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewLibroLabel_stock}"/>
+                        <h:outputText value="#{libroController.selected.stock}" title="#{bundle.ViewLibroTitle_stock}"/>
+                        <h:outputText value="#{bundle.ViewLibroLabel_costo}"/>
+                        <h:outputText value="#{libroController.selected.costo}" title="#{bundle.ViewLibroTitle_costo}"/>
+                        <h:outputText value="#{bundle.ViewLibroLabel_categoriaNombre}"/>
+                        <h:outputText value="#{libroController.selected.categoriaNombre}" title="#{bundle.ViewLibroTitle_categoriaNombre}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="LibroViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

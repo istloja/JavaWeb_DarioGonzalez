@@ -104,7 +104,7 @@ public class urlFilter implements Filter {
         HttpServletResponse servel_response = (HttpServletResponse) response;
 
         boolean sesion_iniciada = false;
-        boolean redirecionar = true;
+        boolean redirecionar = false;
         String paginas[] = {"/sga/Login.xhtml"};
         String estudiante[] = {"/sga/paginaEstudiante.xhtml"};
         String docente[] = {"/sga/paginaDocente.xhtml","/sga/welcomePrimeFaces.xhtlm"};
@@ -112,14 +112,14 @@ public class urlFilter implements Filter {
 
         HttpSession sesion = servet_resquest.getSession(true);
         Usuarios us = (Usuarios) sesion.getAttribute("user");
-                            
+             
+        
         if (us!=null) {
             if (us.getRol().equals("Estudiante")) {
                 for (String estudiantes : estudiante) {
                     if (servet_resquest.getRequestURI().contains(estudiantes)) {
                         System.out.println("entro estudiante");
                         redirecionar = false;
-
                     }
                 } 
             }
@@ -127,7 +127,6 @@ public class urlFilter implements Filter {
                 for (String docentes : docente) {
                     if (servet_resquest.getRequestURI().contains(docentes)) {
                                redirecionar = false;
-
                     }
                 }  
             }
@@ -135,7 +134,6 @@ public class urlFilter implements Filter {
                 for (String administradores : administrador) {
                     if (servet_resquest.getRequestURI().contains(administradores)) {
                               redirecionar = false;
-
                     }
                 }
             }
@@ -148,7 +146,6 @@ public class urlFilter implements Filter {
                 }
             }
         } 
-        System.out.println("nel pastel");
         if (redirecionar) {
             
             servel_response.sendRedirect(servet_resquest.getContextPath() + "/sga/Login.xhtml");
