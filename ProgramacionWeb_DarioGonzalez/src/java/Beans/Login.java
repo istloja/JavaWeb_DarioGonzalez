@@ -47,21 +47,26 @@ public class Login {
                 System.out.println("ingreso");
                 
                 HttpSession sesion = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-                sesion.setAttribute("user", usuario);
+                sesion.setAttribute("user", user);
                 
-                if (usuario.getRol().equals("Estudiante")) {
-                                          
-                    url = "paginaEstudiante.xhtml?faces-redirect=true";
-                }
-                if (usuario.getRol().equals("Docente")) {
+                switch(usuario.getRol()){
+                    
+                    case "Estudiante":
+                        System.out.println("estudiante");
+                        url = "paginaEstudiante.xhtml?faces-redirect=true";
+                        break;
                         
-                    url = "paginaDocente.xhtml?faces-redirect=true";
-                }
-                
-                if (usuario.getRol().equals("Administrador")) {
+                    case "Docente":
+                        System.out.println("docente");
+                        url = "paginaDocente.xhtml?faces-redirect=true";
+                        break;
                         
-                    url = "paginaAdministrador.xhtml?faces-redirect=true";
+                    case "Administrador":
+                        System.out.println("administrador");
+                        url = "paginaAdministrador.xhtml?faces-redirect=true";
+                        break;
                 }
+            break;    
             }else{
                 FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error",null));
             }

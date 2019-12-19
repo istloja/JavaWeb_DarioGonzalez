@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("*.xhtml")
+@WebFilter("*.html")
 public class urlFilter implements Filter {
 
     private static final boolean debug = true;
@@ -106,57 +106,20 @@ public class urlFilter implements Filter {
         boolean sesion_iniciada = false;
         boolean redirecionar = true;
         String paginas[] = {"/sga/Login.xhtml"};
-        String estudiante[] = {"/sga/paginaEstudiante.xhtml"};
-        String docente[] = {"/sga/paginaDocente.xhtml","/sga/welcomePrimeFaces.xhtlm"};
-        String administrador[] = {"/sga/paginaAdministrador.xhtml","/sga/Pagina1.xhtml"};
-
-        HttpSession sesion = servet_resquest.getSession(true);
-        Usuarios us = (Usuarios) sesion.getAttribute("user");
-                            
-        if (us!=null) {
-            if (us.getRol().equals("Estudiante")) {
-                for (String estudiantes : estudiante) {
-                    if (servet_resquest.getRequestURI().contains(estudiantes)) {
-                        System.out.println("entro estudiante");
-                        redirecionar = false;
-
-                    }
-                } 
-            }
-            if (us.getRol().equals("Docente")) {
-                for (String docentes : docente) {
-                    if (servet_resquest.getRequestURI().contains(docentes)) {
-                               redirecionar = false;
-
-                    }
-                }  
-            }
-            if (us.getRol().equals("Administrador")) {
-                for (String administradores : administrador) {
-                    if (servet_resquest.getRequestURI().contains(administradores)) {
-                              redirecionar = false;
-
-                    }
-                }
-            }
-        }else {
         
+        HttpSession sesion = servet_resquest.getSession(true);
+        Usuarios user = (Usuarios) sesion.getAttribute("user");
+        
+        if (user!=null) {
+           redirecionar = false;
+        }else {
+
             for (String pagina : paginas) {
-                
+
                 if (servet_resquest.getRequestURI().contains(pagina)) {
-                    redirecionar = false;           
+                    redirecionar = false;
                 }
             }
-        } 
-        System.out.println("nel pastel");
-        if (redirecionar) {
-            
-            servel_response.sendRedirect(servet_resquest.getContextPath() + "/sga/Login.xhtml");
-            
-
-        } else {
-
-            chain.doFilter(request, response);
         }
 //        if (sesion_iniciada) {
 
@@ -169,9 +132,18 @@ public class urlFilter implements Filter {
 //                }
 //            }
 //        }
-      
+        if (redirecionar) {
+
+            servel_response.sendRedirect(servet_resquest.getContextPath() + "/sga/Login.xhtml");
+
+        } else {
+
+            chain.doFilter(request, response);
+        }
     
     }
+    
+
     /**
      * Return the filter configuration object for this filter.
      */

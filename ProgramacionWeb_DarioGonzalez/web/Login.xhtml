@@ -26,7 +26,7 @@
                         <p:password id="password" value="#{login.pasword}"></p:password>
                         <br/>
 
-                        <p:commandButton value="Login" update="mensaje" action="#{login.loginUser()}"></p:commandButton>
+                        <p:commandButton value="Login" update="mensaje" actionListener="#{login.loginUser}"></p:commandButton>
                         
                     </h:panelGrid>    
                 </h:form>
