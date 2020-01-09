@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -82,7 +83,71 @@ public class UsuarioFacadeREST extends AbstractFacade<Usuario> {
     public String countREST() {
         return String.valueOf(super.count());
     }
-
+    
+    @POST
+    @Path("crear_usuario")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public String crearUsuario(@FormParam("cedula") String cedula, @FormParam("nombre") String nombre, @FormParam("apellido") String apellido, @FormParam("rol") Integer rol, 
+                            @FormParam("user_name") String user_name, @FormParam("password") String password){
+    
+        Usuario usuario = new  Usuario();
+        
+        usuario.setCedula(cedula);
+        usuario.setNombre(nombre);
+        usuario.setApellido(apellido);
+        usuario.setRol(rol);
+        usuario.setUserName(user_name);
+        usuario.setPassword(password); 
+        
+        super.create(usuario);
+        
+        return "Usuario Creado";
+    }
+    
+   
+    
+    @POST
+    @Path("editar_usuario")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public String editarUsuario(@FormParam("cedula") String cedula, @FormParam("nombre") String nombre, @FormParam("apellido") String apellido, @FormParam("rol") Integer rol, 
+                            @FormParam("user_name") String user_name, @FormParam("password") String password){
+        
+        Usuario usuario = new  Usuario();
+                
+        if (nombre != null && nombre != usuario.getNombre()) {
+            
+            usuario.setNombre(nombre);
+        }
+        if (apellido!= null && apellido != usuario.getApellido()) {
+            usuario.setApellido(apellido);
+            
+        }
+        if (rol != null && rol != usuario.getRol()) {
+            usuario.setRol(rol);
+        }
+        
+        if (user_name != null && user_name != usuario.getUserName()) {
+             usuario.setUserName(user_name);
+        }
+       
+        if (password != null && password != usuario.getPassword()) {
+            usuario.setPassword(password);
+        }
+        
+        super.edit(usuario);
+        
+        return "Usuario Editado";
+    }
+    
+    @POST
+    @Path("eliminar_usuario")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public String eliminarUsuario(@FormParam("cedula") String cedula){
+        
+        super.remove(super.find(cedula));
+        return "Usuario Eliminado";
+    }
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;
